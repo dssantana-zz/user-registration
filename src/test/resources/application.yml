@@ -1,0 +1,74 @@
+info:
+  app:
+    name: "@project.artifactId@"
+  build:
+    version: "@project.version@"
+
+jwt:
+  publicKey:
+    filename: public_key.txt
+      
+server:
+  tomcat:
+    max-threads: 1
+    port: 8082
+
+debug: true
+
+logging:
+  path: logs/
+  level:
+    com:
+      netflix:
+        eureka: 'OFF'
+        discovery: 'OFF'
+    org:
+      springframework:
+        security: 'DEBUG'
+  
+#spring: 
+#  jmx:
+#    enabled: false # disable JMX 
+#  rabbitmq:
+#    addresses: 'white-mynah-bird.rmq.cloudamqp.com'
+#    virtual-host: 'orjifjlw'
+#    port: 5672
+#    username: '{cipher}AgCGQyMjcyri692bom6IPQt2iqPSd7E2prcwiE6qkjHajw15kvHxGyYm32fah1vkhQmFbWYWHr659qOnC3gAbe2JQ/lpaE7fISSJwjQIeVxlVXRS0teoOr2G6+wNYBL/RsgL7Oaf5tNvy43JJnskJ6rhx2FAlGw4K6KAn5qcz1cVCQDQzxhgk/RUaowuDIe78BCNdzugzoKoFT4mHbsgu+JWRC1EZwbpgbAfhJF2rnndSw4+UDm5WIKkWM1uP642ZkZAxP3hKPhoA6TmujcGU+cu5DvIC+t4bGGq4/fCwufDwIJB64BbuxdJCoFLwh0qy66Of/oKh4tZblnIseKK4y00ROV11JjRvhRWvVJECmImMYxe3/MT7TXsJqTtigggNzmpDgiQNvpNRJ9AnIQ8qmVEKLoWbw5vsX8V+N02AazFJYlpeo5aoYohAQZvAICnBPtC5ZO2fRpCdjKmIM3pWNXquHYXzElh3SA/jcV5fOTExgKDclmAg4nsxRnIro/8FI4RVtwf4qXrAhMNfvBJQ7cGps4HVdWqDFVikHbFOHXI1Iixv+1IGHtr15jLKVl/mvx3gxyVQu31l7wLerL9BaaSlqKhOJZnIyLKNjQodv8Hl+hHwD/+WQDrlhZ+nlSmBscMj6Ey1CvgPPtkDtMZIVjJxWPxrMhTZdxJI9toocnz5BzxVjIpFdTxX8F/CCKTmvE65kt1NI0D9jQJj7fN+qvy'
+#    password: '{cipher}AgBpdzwNV+be6TDhSuIYEga/ae3TGvv4p2vu8lczSdYny2lJtdCz8t6ttN/xtyXxZWtFLmnUd2GsMt89N/T2scpe7q+kz+MnoVUv2pRvvi+S7ovWJo302afk/JwgSyxdLzEr6Pl5yZtFlD0RreRiSdeDSEs468xfEleexgYDDzzYTF4JH6ZPIK6HW3XdApz5hg1BGpzu3pTmVRVflPd7nGTAaaxJF9hqJgFliCSm4RImLg4ncWgFLUl5k5WUVfzuQBpRlrsgxpOlcgHOfYUIA3qmB6Y/f7TIyMmYSxt5O4hebap43KOCRwWSRyeIkx2lhXKEUDDW60x6PEhNfVkOexqSE6NNEY98vptlUz/sm0tQNsinZFUMiuha+Zmwz4JW8K0BpqmSOWXYJJCev3XfWPU2ntV63JfjCOgLZQZJC9qiKYNzRDYwkoVTamqk0rpA3JcEEVzbqrZwPkR7aP04nOkIXgX/99V4uZNSY/e5Fdp1wbjFjd5Q0F6G1M6CPjCcaiEJTsiyfNddZAWK1U9v2bFe5OOarib0HO17+9knTlDoeX0i69uHASK5P+03vIpMcAuqY/+oszSKB6FptawNpIoQrGButgG31mE0GvVnZAXMFWNDhtZt0ynx7gi81FLf5nsMQkzPmr7J4aNOVlo8UsqAerhyKEcciPFOJNaShoEclK/xvVfW+DJpxlL54En6v9ruhuqxq8FWAaGnHNID+2WktCn0owCpWexy9SV0PU0dDq0R68rJupIYkZ4/4DK2tgk='                      
+#    connection-timeout: 30000
+#    requested-heartbeat: 35
+
+# Actuator endpoint path (/admin/info, /admin/health, ...)
+management:
+  context-path: /admin
+# http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-endpoints
+endpoints:
+  enabled: true
+  info:
+    enabled: true
+  health:
+    enabled: true
+  metrics:
+    enabled: true
+  jmx:
+    enabled: false
+  shutdown:
+    enabled: false  
+
+security:
+  sessions: stateless
+  basic:
+    enabled: true
+  user:
+    name: test
+    password: test
+   
+
+spring:  
+  cloud:
+    stream:
+      bindings:
+        outboundAccountRegistrationChannel:
+          destination: registration-account
+          content-type: application/json
+          group: account-mngt-group                            
